@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calci.css">
+ 
+  </head>
+  <body>
+    <h1 align="center">Calculator App</h1>
+    <table id="cal" align="center">
+      
+      <br><br>
+      <tr>
+        <td colspan="3"><input type="text" id="result"></td>
+        <td><input type="button" name="clr" value="clear"></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="del"></td>
+        <td><input type="button" value="("></td>
+        <td><input type="button" value=")"></td>
+        <td><input type="button" value="="></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="0"></td>
+        <td><input type="button" value="1"></td>
+        <td><input type="button" value="2"></td>
+        <td><input type="button" value="+"></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="3"></td>
+        <td><input type="button" value="4"></td>
+        <td><input type="button" value="5"></td>
+        <td><input type="button" value="-"></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="6"></td>
+        <td><input type="button" value="7"></td>
+        <td><input type="button" value="8"></td>
+        <td><input type="button" value="/"></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="9"></td>
+        <td colspan="2"><input type="button" value="enter"></td>
+        <td><input type="button" value="*"></td>
+      </tr>
+    </table>
+
+    <script>
+      const calculator = document.getElementById('cal');
+      const inputField = document.getElementById('result');
+      const buttons = calculator.getElementsByTagName('input');
+
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function() {
+          const value = this.value;
+          if (value === 'clear') {
+            inputField.value = '';
+          }
+          else if (value === 'del') {
+            inputField.value = inputField.value.slice(0, -1);
+          }
+          else if (value === 'enter') {
+            calculate();
+          }
+          else {
+            inputField.value += value;
+          }
+        });
+      }
+      function calculate() {
+        const input = inputField.value;
+        const result = eval(input);
+        inputField.value = result;
+      }
+    </script>
+  </body>
+</html>
